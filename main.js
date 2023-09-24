@@ -1,61 +1,53 @@
 // === HELP FUNCTIONS ===
 // Random id
 function randomId() {
-    return Math.floor(Math.random() * 100000);
+  return Math.floor(Math.random() * 100000);
 }
 
 // Convert number to money VND
 function convertMoney(num) {
-    return num.toLocaleString('it-IT', { style: 'currency', currency: 'VND' });
+  return num.toLocaleString('it-IT', { style: 'currency', currency: 'VND' });
 }
 
 // === KHAI BÁO BIẾN ===
 // Danh sách sản phẩm
 let products = [
-    {
-        id: randomId(),
-        name: 'Áo kiểu nữ cam đất phối cổ trắng dập ly',
-        description:
-            'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quae, velit.',
-        price: 250000,
-        image:
-            'https://image.yes24.vn/Upload/ProductImage/anhduong201605/1947415_L.jpg?width=550&height=550',
-        count: 1,
-        selected: false,
-    },
-    {
-        id: randomId(),
-        name: 'Áo trắng bèo lé đen tay loe dễ thương',
-        description:
-            'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quae, velit.',
-        price: 350000,
-        image:
-            'https://image.yes24.vn/Upload/ProductImage/anhduong201605/1914666_L.jpg?width=550&height=550',
-        count: 1,
-        selected: false,
-    },
-    {
-        id: randomId(),
-        name: 'Áo trắng bèo lé đen tay loe dễ thương',
-        description:
-            'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quae, velit.',
-        price: 350000,
-        image:
-            'https://image.yes24.vn/Upload/ProductImage/anhduong201605/1914666_L.jpg?width=550&height=550',
-        count: 1,
-        selected: false,
-    },
-    {
-        id: randomId(),
-        name: 'Áo trắng bèo lé đen tay loe dễ thương',
-        description:
-            'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quae, velit.',
-        price: 350000,
-        image:
-            'https://image.yes24.vn/Upload/ProductImage/anhduong201605/1914666_L.jpg?width=550&height=550',
-        count: 1,
-        selected: false,
-    },
+  {
+    id: randomId(),
+    name: 'Nokia C30 (2GB/32GB)',
+    description: 'Nokia C30 (2GB/32GB) - Hàng Chính Hãng',
+    price: 2490000,
+    image: 'product1.jpg',
+    count: 1,
+    selected: false,
+  },
+  {
+    id: randomId(),
+    name: 'Samsung Galaxy S20 FE',
+    description: 'Samsung Galaxy S20 FE - Hàng Chính Hãng Mua Online Tặng PMH 1.000.000đ',
+    price: 11900000,
+    image: 'product2.jpg',
+    count: 1,
+    selected: false,
+  },
+  {
+    id: randomId(),
+    name: 'OPPO A54 (4GB/128GB)',
+    description: 'OPPO A54 (4GB/128GB) - Hàng Chính Hãng, Phân phối bởi OPPO Việt Nam',
+    price: 4990000,
+    image: 'product3.jpg',
+    count: 1,
+    selected: false,
+  },
+  {
+    id: randomId(),
+    name: 'Realme C25s (4GB/128GB)',
+    description: 'Realme C25s (4GB/128GB) - Hàng Chính Hãng, Chương trình bảo hành 1 đổi 1 trong 12 tháng',
+    price: 4490000,
+    image: 'product4.jpg',
+    count: 1,
+    selected: false,
+  },
 ];
 
 // === TRUY CẬP VÀO CÁC THÀNH PHẦN ===
@@ -73,27 +65,27 @@ let inputPromotion = document.querySelector('#promo-code');
 // === MAIN FUNCTION ===
 // Render và hiển thị dữ liệu
 function renderUI(arr) {
-    productsEle.innerHTML = '';
+  productsEle.innerHTML = '';
 
-    // Cập nhật số lượng sản phẩm trong cart
-    let countEle = document.querySelector('.count');
-    countEle.innerText = `${updateTotalItem(arr)} items in the bag`;
+  // Cập nhật số lượng sản phẩm trong cart
+  let countEle = document.querySelector('.count');
+  countEle.innerText = `${updateTotalItem(arr)} items in the bag`;
 
-    // Cập nhật tổng tiền
-    updateTotalMoney(arr);
+  // Cập nhật tổng tiền
+  updateTotalMoney(arr);
 
-    if (arr.length == 0) {
-        productsEle.insertAdjacentHTML(
-            'afterbegin',
-            '<li>Không có sản phẩm nào trong giỏ hàng</li>'
-        );
-        document.querySelector('.option-container').style.display = 'none';
-        return;
-    }
+  if (arr.length == 0) {
+    productsEle.insertAdjacentHTML(
+      'afterbegin',
+      '<li>Không có sản phẩm nào trong giỏ hàng</li>'
+    );
+    document.querySelector('.option-container').style.display = 'none';
+    return;
+  }
 
-    for (let i = 0; i < arr.length; i++) {
-        const p = arr[i];
-        productsEle.innerHTML += `
+  for (let i = 0; i < arr.length; i++) {
+    const p = arr[i];
+    productsEle.innerHTML += `
             <li class="row">
                 <div class="col left">
                     <div class="thumbnail">
@@ -125,62 +117,62 @@ function renderUI(arr) {
                 </div>
             </li>
         `;
-    }
+  }
 }
 
 // Cập nhật số lượng sản phẩm
 function updateTotalItem(arr) {
-    let total = 0;
-    for (let i = 0; i < arr.length; i++) {
-        const p = arr[i];
-        total += p.count;
-    }
-    return total;
+  let total = 0;
+  for (let i = 0; i < arr.length; i++) {
+    const p = arr[i];
+    total += p.count;
+  }
+  return total;
 }
 
 // Remove item trong cart
 function removeItem(id, checkbox) {
-    for (let i = 0; i < products.length; i++) {
-        if (products[i].id == id) {
-          products[i].selected = !products[i].selected;
-        }
+  for (let i = 0; i < products.length; i++) {
+    if (products[i].id == id) {
+      products[i].selected = !products[i].selected;
     }
-    renderUI(products);
+  }
+  renderUI(products);
 }
 
 // Thay đổi số lượng sản phẩm
 function changeTotalProduct(id, e) {
-    for (let i = 0; i < products.length; i++) {
-        if (products[i].id == id) {
-            products[i].count = Number(e.target.value);
-        }
+  for (let i = 0; i < products.length; i++) {
+    if (products[i].id == id) {
+      products[i].count = Number(e.target.value);
     }
-    renderUI(products);
+  }
+  renderUI(products);
 }
 
 // Cập nhật tổng tiền
 function updateTotalMoney(arr) {
-    // Tính tổng tiền cart và tổng tiền giảm giá
-    let totalMoney = 0;
-    let discountMoney = 0;
+  // Tính tổng tiền cart và tổng tiền giảm giá
+  let totalMoney = 0;
+  let discountMoney = 0;
 
-    for (let i = 0; i < arr.length; i++) {
-        const p = arr[i];
+  for (let i = 0; i < arr.length; i++) {
+    const p = arr[i];
 
-        // Kiểm tra nếu sản phẩm đã được chọn bằng checkbox thì thêm giá của sản phẩm đó vào tổng tiền giảm giá
-        if (p.selected) {
-          totalMoney += p.count * p.price;
-        }
+    // Kiểm tra nếu sản phẩm đã được chọn bằng checkbox thì thêm giá của sản phẩm đó vào tổng tiền giảm giá
+    if (p.selected) {
+      totalMoney += p.count * p.price;
     }
+  }
 
-    // Cập nhật tiền lên trên giao diện
-    subTotalEl.innerText = convertMoney(totalMoney);
-    vatEl.innerText = convertMoney(totalMoney * 0.05);
-    totalEle.innerText = convertMoney(totalMoney * 1.05);
+  // Cập nhật tiền lên trên giao diện
+  subTotalEl.innerText = convertMoney(totalMoney);
+  vatEl.innerText = convertMoney(totalMoney * 0.05);
+  totalEle.innerText = convertMoney(totalMoney * 1.05);
 }
 
 btnPromotion.addEventListener('click', function () {
-    updateTotalMoney(products);
+  updateTotalMoney(products);
 });
 
 window.onload = renderUI(products);
