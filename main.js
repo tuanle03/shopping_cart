@@ -1,16 +1,11 @@
-// === HELP FUNCTIONS ===
-// Random id
 function randomId() {
   return Math.floor(Math.random() * 100000);
 }
 
-// Convert number to money VND
 function convertMoney(num) {
   return num.toLocaleString('it-IT', { style: 'currency', currency: 'VND' });
 }
 
-// === KHAI BÁO BIẾN ===
-// Danh sách sản phẩm
 let products = [
   {
     id: randomId(),
@@ -50,7 +45,6 @@ let products = [
   },
 ];
 
-// === TRUY CẬP VÀO CÁC THÀNH PHẦN ===
 let productsEle = document.querySelector('.products');
 
 let subTotalEl = document.querySelector('.subtotal span');
@@ -62,8 +56,6 @@ let totalEle = document.querySelector('.total span');
 let btnPromotion = document.querySelector('.promotion button');
 let inputPromotion = document.querySelector('#promo-code');
 
-// === MAIN FUNCTION ===
-// Render và hiển thị dữ liệu
 function renderUI(arr) {
   productsEle.innerHTML = '';
 
