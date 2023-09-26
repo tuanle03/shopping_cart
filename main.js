@@ -1,16 +1,11 @@
-// === HELP FUNCTIONS ===
-// Random id
 function randomId() {
   return Math.floor(Math.random() * 100000);
 }
 
-// Convert number to money VND
 function convertMoney(num) {
   return num.toLocaleString('it-IT', { style: 'currency', currency: 'VND' });
 }
 
-// === KHAI BÁO BIẾN ===
-// Danh sách sản phẩm
 let products = [
   {
     id: randomId(),
@@ -50,7 +45,6 @@ let products = [
   },
 ];
 
-// === TRUY CẬP VÀO CÁC THÀNH PHẦN ===
 let productsEle = document.querySelector('.products');
 
 let subTotalEl = document.querySelector('.subtotal span');
@@ -62,16 +56,12 @@ let totalEle = document.querySelector('.total span');
 let btnPromotion = document.querySelector('.promotion button');
 let inputPromotion = document.querySelector('#promo-code');
 
-// === MAIN FUNCTION ===
-// Render và hiển thị dữ liệu
 function renderUI(arr) {
   productsEle.innerHTML = '';
 
-  // Cập nhật số lượng sản phẩm trong cart
   let countEle = document.querySelector('.count');
   countEle.innerText = `${updateTotalItem(arr)} items in the bag`;
 
-  // Cập nhật tổng tiền
   updateTotalMoney(arr);
 
   if (arr.length == 0) {
@@ -120,7 +110,6 @@ function renderUI(arr) {
   }
 }
 
-// Cập nhật số lượng sản phẩm
 function updateTotalItem(arr) {
   let total = 0;
   for (let i = 0; i < arr.length; i++) {
@@ -130,7 +119,6 @@ function updateTotalItem(arr) {
   return total;
 }
 
-// Remove item trong cart
 function removeItem(id, checkbox) {
   for (let i = 0; i < products.length; i++) {
     if (products[i].id == id) {
@@ -140,7 +128,6 @@ function removeItem(id, checkbox) {
   renderUI(products);
 }
 
-// Thay đổi số lượng sản phẩm
 function changeTotalProduct(id, e) {
   for (let i = 0; i < products.length; i++) {
     if (products[i].id == id) {
@@ -150,22 +137,18 @@ function changeTotalProduct(id, e) {
   renderUI(products);
 }
 
-// Cập nhật tổng tiền
 function updateTotalMoney(arr) {
-  // Tính tổng tiền cart và tổng tiền giảm giá
   let totalMoney = 0;
   let discountMoney = 0;
 
   for (let i = 0; i < arr.length; i++) {
     const p = arr[i];
 
-    // Kiểm tra nếu sản phẩm đã được chọn bằng checkbox thì thêm giá của sản phẩm đó vào tổng tiền giảm giá
     if (p.selected) {
       totalMoney += p.count * p.price;
     }
   }
 
-  // Cập nhật tiền lên trên giao diện
   subTotalEl.innerText = convertMoney(totalMoney);
   vatEl.innerText = convertMoney(totalMoney * 0.05);
   totalEle.innerText = convertMoney(totalMoney * 1.05);
