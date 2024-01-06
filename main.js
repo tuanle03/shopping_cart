@@ -1,14 +1,11 @@
-// randomId: generate random id
 function randomId() {
   return Math.floor(Math.random() * 100000);
 }
 
-// convertMoney: convert number to money format
 function convertMoney(num) {
   return num.toLocaleString('it-IT', { style: 'currency', currency: 'VND' });
 }
 
-// products: list of products
 let products = [
   {
     id: randomId(),
@@ -59,7 +56,6 @@ let totalEle = document.querySelector('.total span');
 let btnPromotion = document.querySelector('.promotion button');
 let inputPromotion = document.querySelector('#promo-code');
 
-// renderUI: render UI
 function renderUI(arr) {
   productsEle.innerHTML = '';
 
@@ -114,7 +110,6 @@ function renderUI(arr) {
   }
 }
 
-// updateTotalItem: update total item
 function updateTotalItem(arr) {
   let total = 0;
   for (let i = 0; i < arr.length; i++) {
@@ -124,7 +119,6 @@ function updateTotalItem(arr) {
   return total;
 }
 
-// removeItem: remove item, when click checkbox -> change selected
 function removeItem(id, checkbox) {
   for (let i = 0; i < products.length; i++) {
     if (products[i].id == id) {
@@ -134,7 +128,6 @@ function removeItem(id, checkbox) {
   renderUI(products);
 }
 
-// changeTotalProduct: change total product
 function changeTotalProduct(id, e) {
   for (let i = 0; i < products.length; i++) {
     if (products[i].id == id) {
@@ -144,7 +137,6 @@ function changeTotalProduct(id, e) {
   renderUI(products);
 }
 
-// updateTotalMoney: update total money
 function updateTotalMoney(arr) {
   let totalMoney = 0;
   let discountMoney = 0;
@@ -162,7 +154,6 @@ function updateTotalMoney(arr) {
   totalEle.innerText = convertMoney(totalMoney * 1.05);
 }
 
-// btnPromotion: click button promotion
 btnPromotion.addEventListener('click', function () {
   updateTotalMoney(products);
 });
